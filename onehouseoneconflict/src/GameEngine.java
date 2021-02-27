@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enginetest;
+package enginetest; 
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,14 +23,17 @@ import javax.swing.Timer;
  */
 public class GameEngine extends JPanel {
     
-    //private int PosX;
-    //private int PosY;
+    private int PosX;
+    private int PosY;
     public ArrayList<Rectangle> List;
     private Image OrangeImage;
     private Image GreenImage;
     private Image BlueImage;
     private Timer newFrameTimer;
     private final int FPS = 120;
+    private int multiplication = 2;
+    private int Xoffset = 0;
+    private int Yoffset = 0;
     
     public GameEngine() {
         super();
@@ -39,22 +42,22 @@ public class GameEngine extends JPanel {
                                            // override only those which interests us
         @Override //I override only one method for presentation
         public void mousePressed(MouseEvent e) {
-            System.out.println(e.getX() + "," + e.getY() );
-            //PosX = e.getX();
-            //PosY = e.getY();
+            System.out.println((e.getX() - Xoffset) + "," + (e.getY() - Yoffset));
+            PosX = e.getX() - Xoffset;
+            PosY = e.getY() - Yoffset;
             for (int i = 0; i < List.size(); i++) {
                 //ha beleclickeltem egy objektumba (teglalap)
                 if ((List.get(i).x < e.getX() && (List.get(i).x + List.get(i).width) > e.getX()) && List.get(i).y < e.getY() && (List.get(i).y + List.get(i).height) > e.getY()){
                     System.out.println(List.get(i).getName() + " clicked");
                 }
             }
-            List.get(2).setX(((e.getX()) / 40) * 40);
-            List.get(2).setY(((e.getY()) / 40) * 40);
-            List.get(2).Destination.x = (e.getX() / 40) * 40;
-            List.get(2).Destination.y = (e.getY() / 40) * 40;
-            List.get(0).AddPoint((e.getX() / 40) * 40, (e.getY() / 40) * 40);
-            //List.get(0).AddPoint(e.getX(), e.getY());
-            System.out.println("ADDED " + (e.getX() / 40) * 40 + "," + (e.getY() / 40) * 40);
+            List.get(2).setX(((e.getX()) / (40*multiplication)) * 40);
+            List.get(2).setY(((e.getY()) / (40*multiplication)) * 40);
+            List.get(2).Destination.x = (e.getX() / (40*multiplication)) * 40;
+            List.get(2).Destination.y = (e.getY() / (40*multiplication)) * 40;
+            //List.get(0).AddPoint((e.getX() / (40*multiplication)) * 40, (e.getY() / (40*multiplication)) * 40);
+            List.get(0).AddPoint(e.getX(), e.getY(), multiplication, Xoffset, Yoffset);
+            //System.out.println("ADDED " + (e.getX() / (40*multiplication)) * 40 + "," + (e.getY() / (40*multiplication)) * 40);
         }
     });
         newFrameTimer = new Timer(1000 / FPS, new NewFrameListener());
@@ -77,13 +80,13 @@ public class GameEngine extends JPanel {
         super.paintComponent(grphcs);
         setBackground(Color.LIGHT_GRAY);
         for (int i = 0; i < 16; i++) {//vizszintes vonalak
-            grphcs.drawLine(0, i * 40, 800, i * 40);
+            grphcs.drawLine(0 * multiplication - Xoffset, i * 40 * multiplication - Yoffset, 800 * multiplication - Xoffset, i * 40 * multiplication - Yoffset);
         }
         for (int i = 0; i < 21; i++) {//fuggoleges vonalak
-            grphcs.drawLine(i * 40, 0, i * 40, 600);
+            grphcs.drawLine(i * 40 * multiplication - Xoffset,0 * multiplication - Yoffset, i * 40 * multiplication - Xoffset, 600 * multiplication - Yoffset);
         }
         for (int i = 0; i < List.size(); i++) {
-            List.get(i).draw(grphcs);
+            List.get(i).draw(grphcs, multiplication, Xoffset, Yoffset);
         }
     }
     
@@ -106,12 +109,12 @@ public class GameEngine extends JPanel {
             }
         }
     }
-    /*
+    
     public int GetPosX(){
         return PosX;
     }
     
     public int GetPosY(){
         return PosY;
-    }*/
+    }
 }

@@ -5,7 +5,7 @@
  */
 package enginetest;
 
-import java.awt.Graphics;
+import java.awt.Graphics; 
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -36,12 +36,12 @@ public class Rectangle {
         Destination = new Point(x,y);
     }
     
-    public void AddPoint(int x, int y){
+    public void AddPoint(int x, int y, int multiply, int Xoffset, int Yoffset){
         Point tmp = new Point();
-        tmp.x = x;
-        tmp.y = y;
+        tmp.x = x / (40 * multiply) * 40;
+        tmp.y = y / (40 * multiply) * 40;
         Waypoints.add(tmp);
-        //System.out.println("ADDED " + tmp.x + "," + tmp.y);
+        System.out.println("ADDED " + tmp.x + "," + tmp.y);
     }
     
     public void Move(int speed){
@@ -66,8 +66,8 @@ public class Rectangle {
         }
     }
     
-    public void draw(Graphics g) {   
-        g.drawImage(image, x, y, width, height, null);
+    public void draw(Graphics g, int multiply, int Xoffset, int Yoffset) {   
+        g.drawImage(image, x * multiply - Xoffset, y * multiply - Yoffset, width * multiply, height * multiply, null);
     }
     
     public String getName(){
