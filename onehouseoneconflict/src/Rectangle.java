@@ -5,7 +5,7 @@
  */
 package enginetest;
 
-import java.awt.Graphics; 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Rectangle {
     
-    protected String Name;
+    protected String name;
     protected int x;
     protected int y;
     protected int width;
@@ -25,8 +25,8 @@ public class Rectangle {
     public ArrayList<Point> Waypoints;
     public Point Destination;
 
-    public Rectangle(String Name, int x, int y, int width, int height, Image image) {
-        this.Name = Name;
+    public Rectangle(String name, int x, int y, int width, int height, Image image) {
+        this.name = name;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -36,15 +36,15 @@ public class Rectangle {
         Destination = new Point(x,y);
     }
     
-    public void AddPoint(int x, int y, int multiply, int Xoffset, int Yoffset){
+    public void addPoint(int x, int y, int gridSize, int zoomLevel){ //megkapja a kattintast(+modositokat) es visszaszamolja a valodi koordinatakat a jatekteren.
         Point tmp = new Point();
-        tmp.x = x / (40 * multiply) * 40;
-        tmp.y = y / (40 * multiply) * 40;
-        Waypoints.add(tmp);
-        System.out.println("ADDED " + tmp.x + "," + tmp.y);
+        tmp.x = ((x / (gridSize * zoomLevel)) * gridSize);
+        tmp.y = ((y / (gridSize * zoomLevel)) * gridSize);
+        Waypoints.add(tmp);//tarolja a koordinatat ahova kattintottunk (valodi jatekteren es nema  torzitott kepernyo szerint)
+        System.out.println("ADDED " + tmp.x + "," + tmp.y + "| on the grid: " + tmp.x / gridSize + "," + tmp.y / gridSize);
     }
     
-    public void Move(int speed){
+    public void move(int speed){
         if (Destination.getX() == x && Destination.getY() == y && Waypoints.isEmpty() == true){
             return;
         }
@@ -66,16 +66,16 @@ public class Rectangle {
         }
     }
     
-    public void draw(Graphics g, int multiply, int Xoffset, int Yoffset) {   
-        g.drawImage(image, x * multiply - Xoffset, y * multiply - Yoffset, width * multiply, height * multiply, null);
+    public void draw(Graphics g, int zoomLevel) {//kiolvassa a valodi koordinatakat es visszaszamolja azoknak jelenelg hol kell elhelyezkedniuk a torzitott kepen.
+        g.drawImage(image, x * zoomLevel, y * zoomLevel, width * zoomLevel, height * zoomLevel, null);
     }
     
     public String getName(){
-        return Name;
+        return name;
     }
     
     public void setName(String Name){
-        this.Name = Name;
+        this.name = Name;
     }
     
     public int getX() {

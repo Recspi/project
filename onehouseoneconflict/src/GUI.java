@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enginetest; 
+package enginetest;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -49,5 +49,9 @@ public class GUI {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
+    }
+    
+    public void addObject(){//hianyzo parameterek.(nev, x, y, szelesseg, magassag, kep) NYI
+        GameArea.addRectangle();
     }
 }
