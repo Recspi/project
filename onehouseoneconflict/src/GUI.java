@@ -6,6 +6,7 @@
 package enginetest;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -19,8 +20,7 @@ import javax.swing.JMenuItem;
  */
 public class GUI {
     private JFrame frame;
-    private GameEngine GameArea;
-    //private GameEngine GamePanel;
+    public GameEngine GameArea;
     
     public GUI(){
         frame = new JFrame("TEST Frame");
@@ -40,18 +40,12 @@ public class GUI {
         });
         GameArea.setPreferredSize(new Dimension(800, 600));
         frame.getContentPane().add(GameArea);
-        
-        /*GamePanel = new GameEngine();
-        GamePanel.setLocation(0,200);
-        frame.getContentPane().add(GamePanel);*/
-        
-        //frame.setPreferredSize(new Dimension(800, 600));
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
     }
     
-    public void addObject(){//hianyzo parameterek.(nev, x, y, szelesseg, magassag, kep) NYI
-        GameArea.addRectangle();
+    public void addObject(String nev, int x, int y, int width, int height, Image image){
+        GameArea.addRectangle(nev,x,y,width,height,image);
     }
 }
