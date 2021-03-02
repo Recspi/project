@@ -36,12 +36,14 @@ public class Rectangle {
         Destination = new Point(x,y);
     }
     
-    public void addPoint(int x, int y, int gridSize, int zoomLevel){ //megkapja a kattintast(+modositokat) es visszaszamolja a valodi koordinatakat a jatekteren.
+    public void addPoint(int x, int y, int gridSize, int zoomLevel, int Xoffset, int Yoffset){ //megkapja a kattintast(+modositokat) es visszaszamolja a valodi koordinatakat a jatekteren.
         Point tmp = new Point();
-        tmp.x = ((x / (gridSize * zoomLevel)) * gridSize);
-        tmp.y = ((y / (gridSize * zoomLevel)) * gridSize);
+        tmp.x = ((x / zoomLevel - (Xoffset / zoomLevel)) / gridSize) * gridSize;
+        System.out.println("Stored X: " + tmp.x + " Input X: " + x + " Xoffset: " + Xoffset + " Zoom: " + zoomLevel);
+        tmp.y = ((y / zoomLevel - (Yoffset / zoomLevel)) / gridSize) * gridSize;
+        System.out.println("Stored Y: " + tmp.y + " Input Y: " + y + " Xoffset: " + Yoffset + " Zoom: " + zoomLevel);
         Waypoints.add(tmp);//tarolja a koordinatat ahova kattintottunk (valodi jatekteren es nema  torzitott kepernyo szerint)
-        System.out.println("ADDED " + tmp.x + "," + tmp.y + "| on the grid: " + tmp.x / gridSize + "," + tmp.y / gridSize);
+        System.out.println("ADDED " + tmp.x + "," + tmp.y + "| on the grid: " + (x - Xoffset) / zoomLevel / gridSize + "," + (y - Xoffset) / zoomLevel / gridSize);
     }
     
     public void move(int speed){
@@ -66,8 +68,8 @@ public class Rectangle {
         }
     }
     
-    public void draw(Graphics g, int zoomLevel) {//kiolvassa a valodi koordinatakat es visszaszamolja azoknak jelenelg hol kell elhelyezkedniuk a torzitott kepen.
-        g.drawImage(image, x * zoomLevel, y * zoomLevel, width * zoomLevel, height * zoomLevel, null);
+    public void draw(Graphics g, int zoomLevel, int Xoffset, int Yoffset) {//kiolvassa a valodi koordinatakat es visszaszamolja azoknak jelenelg hol kell elhelyezkedniuk a torzitott kepen.
+        g.drawImage(image, x * zoomLevel + Xoffset, y * zoomLevel + Yoffset, width * zoomLevel, height * zoomLevel, null);
     }
     
     public String getName(){
@@ -108,5 +110,13 @@ public class Rectangle {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+    
+    public void setDestination (Point dest){
+        this.Destination = dest;
+    }
+    
+    public Point getDestination(){
+        return this.Destination;
     }
 }
