@@ -5,29 +5,67 @@
  */
 package enginetest;
 
-import java.awt.Image;
-import java.awt.Point;
-import javax.swing.ImageIcon;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
  * @author Prokkály László
  */
 public class EngineTest {
-    
+
     /**
      * @param args the command line arguments
      */
+    public static GUI GeneralUserInterface;
+    
     public static void main(String[] args) {
-        GUI GeneralUserInterface = new GUI();
-        //test
-        /*Image GreenImage;
-        GreenImage = new ImageIcon("design/images/green.png").getImage();
-        GeneralUserInterface.addObject("test",300,50,60,120,GreenImage);
-        Point destination = new Point();
-        destination.x = 70;
-        destination.y = 130;
-        GeneralUserInterface.GameArea.List.get(3).setDestination(destination);*/
+        GeneralUserInterface = new GUI();
+        
+        GeneralUserInterface.frame.addKeyListener(new MoveKeyListener());
     }
+    
+    
+    public static class MoveKeyListener implements KeyListener{
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == 38)
+            {
+                GeneralUserInterface.GameArea.Player.moveForward();
+            }
+            if(e.getKeyCode() == 40)
+            {
+                GeneralUserInterface.GameArea.Player.moveBackward();
+            }
+            if(e.getKeyCode() == 39)
+            {
+                GeneralUserInterface.GameArea.Player.moveRight();
+            }
+            if(e.getKeyCode() == 37)
+            {
+                GeneralUserInterface.GameArea.Player.moveLeft();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            
+        }
+    
+    }
+    
+    
+    
+    
+    
     
 }
