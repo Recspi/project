@@ -48,4 +48,8 @@ public class GUI {
     public void addObject(String nev, int x, int y, int width, int height, Image image){
         GameArea.addRectangle(nev,x,y,width,height,image);
     }
+    
+    public void addWall(int x, int y, int width, int height, Image image){
+        GameArea.addWall(x,y,width,height,image);
+    }
 }
