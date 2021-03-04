@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enginetest;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -26,6 +25,7 @@ import javax.swing.Timer;
 public class GameEngine extends JPanel {
     
     public ArrayList<Rectangle> List;
+    public ArrayList<Wall> Walls;
     private Image OrangeImage;
     private Image GreenImage;
     private Image BlueImage;
@@ -107,11 +107,16 @@ public class GameEngine extends JPanel {
         GreenImage = new ImageIcon("design/images/green.png").getImage();
         BlueImage = new ImageIcon("design/images/blue.png").getImage();
         List = new ArrayList<>();
+        Walls = new ArrayList<>();
         List.add(new Rectangle("Orange", 0, 0, gridSize, gridSize, OrangeImage));
     }
     
     public void addRectangle(String nev, int x, int y, int width, int height, Image image){
         List.add(new Rectangle(nev,x,y,width,height,image));
+    }
+    
+    public void addWall( int x, int y, int width, int height, Image image){
+        Walls.add(new Wall(x,y,width,height,image));
     }
     
     @Override

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enginetest;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -40,19 +39,19 @@ public class EngineTest {
         public void keyPressed(KeyEvent e) {
             if(e.getKeyCode() == 38)
             {
-                GeneralUserInterface.GameArea.Player.moveForward();
+                //GeneralUserInterface.GameArea.Player.moveForward();
             }
             if(e.getKeyCode() == 40)
             {
-                GeneralUserInterface.GameArea.Player.moveBackward();
+                //GeneralUserInterface.GameArea.Player.moveBackward();
             }
             if(e.getKeyCode() == 39)
             {
-                GeneralUserInterface.GameArea.Player.moveRight();
+                //GeneralUserInterface.GameArea.Player.moveRight();
             }
             if(e.getKeyCode() == 37)
             {
-                GeneralUserInterface.GameArea.Player.moveLeft();
+                //GeneralUserInterface.GameArea.Player.moveLeft();
             }
         }
 

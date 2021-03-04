@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enginetest;
 
 import java.awt.Dimension;
 import java.awt.Image;
@@ -19,7 +18,7 @@ import javax.swing.JMenuItem;
  * @author Prokkály László
  */
 public class GUI {
-    private JFrame frame;
+    public JFrame frame;
     public GameEngine GameArea;
     
     public GUI(){
