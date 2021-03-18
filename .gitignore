@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /netbiens/nbproject/private/
 /netbiens/build/
 /netbiensrelease/nbproject/private/
@@ -16,3 +17,6 @@ netbiens/nbproject/
 netbiensrelease/
 
 onehouseoneconflict/src/.vscode/launch.json
+=======
+/onehouseoneconflict/src/Dev/nbproject/private/
+>>>>>>> Stashed changes

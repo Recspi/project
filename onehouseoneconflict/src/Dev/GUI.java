@@ -3,28 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package enginetest;
 
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Prokkály László
  */
 public class GUI {
-    public JFrame frame;
+    private JFrame frame;
     public GameEngine GameArea;
+    public GameEngine GameArea2;
     
     public GUI(){
         frame = new JFrame("TEST Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GameArea = new GameEngine();
+        GameArea2 = new GameEngine();
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         JMenu gameMenu = new JMenu("Game");
@@ -38,7 +43,14 @@ public class GUI {
             }
         });
         GameArea.setPreferredSize(new Dimension(800, 600));
-        frame.getContentPane().add(GameArea);
+        GameArea2.setPreferredSize(new Dimension(800, 600));
+        
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+        container.add(GameArea);
+        container.add(GameArea2);
+        
+        frame.getContentPane().add(container);
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
@@ -49,6 +61,7 @@ public class GUI {
     }
     
     public void addWall(int x, int y, int width, int height, Image image){
-        GameArea.addWall(x,y,width,height,image);
+        GameArea.addWall(x,y,width,height,image);//bal oldali ablakhoz ad hozza
+        GameArea2.addWall(x,y,width,height,image);//jobb oldali ablakhoz ad hozza
     }
 }

@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package enginetest;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -36,7 +37,7 @@ public class GameEngine extends JPanel {
     private int cameraMoveSpeed = 3;//kamera mozgasi sebessege
     private int Xoffset = 0;//kamera X iranyu kimozdulasa
     private int Yoffset = 0;//kamera Y iranyu kimozdulasa
-    private int motionSpeed = 1; //pixel jump/tick
+    private int motionSpeed = 2; //pixel jump/tick
     
     public GameEngine() {
         super();
@@ -119,6 +120,10 @@ public class GameEngine extends JPanel {
         Walls.add(new Wall(x,y,width,height,image));
     }
     
+    public void Syncronize(ArrayList<Rectangle> data){//adatok szinkronizalasa.
+        this.List = data;
+    }
+    
     @Override
     protected void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs);
@@ -129,9 +134,11 @@ public class GameEngine extends JPanel {
         for (int i = 0; i < (800 / gridSize) + 1; i++) {//fuggoleges seged vonalak
             grphcs.drawLine(i * gridSize * zoomLevel + Xoffset, 0  + Yoffset, i * gridSize * zoomLevel + Xoffset, 600 * zoomLevel  + Yoffset);
         }
-        for (int i = 0; i < List.size(); i++) {
+        for (int i = List.size() - 1; i >= 0 ; i--) {
             List.get(i).draw(grphcs, zoomLevel, Xoffset, Yoffset);
         }
+        grphcs.drawString("Money: " + Integer.toString(300), 10, 20);
+        grphcs.drawString("Capacity: " + Integer.toString(0) + "/" + Integer.toString(20), 100, 20);
     }
     
     class NewFrameListener implements ActionListener {
