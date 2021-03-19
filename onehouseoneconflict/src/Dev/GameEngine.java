@@ -109,7 +109,7 @@ public class GameEngine extends JPanel {
         BlueImage = new ImageIcon("design/images/blue.png").getImage();
         List = new ArrayList<>();
         Walls = new ArrayList<>();
-        List.add(new Rectangle("Orange", 0, 0, gridSize, gridSize, OrangeImage));
+        List.add(new Rectangle("Orange", 40, 40, gridSize, gridSize, OrangeImage));
     }
     
     public void addRectangle(String nev, int x, int y, int width, int height, Image image){
@@ -118,6 +118,10 @@ public class GameEngine extends JPanel {
     
     public void addWall( int x, int y, int width, int height, Image image){
         Walls.add(new Wall(x,y,width,height,image));
+    }
+    
+    public void addWalls(ArrayList<Wall> walls){
+        Walls = walls;
     }
     
     public void Syncronize(ArrayList<Rectangle> data){//adatok szinkronizalasa.
@@ -133,6 +137,9 @@ public class GameEngine extends JPanel {
         }
         for (int i = 0; i < (800 / gridSize) + 1; i++) {//fuggoleges seged vonalak
             grphcs.drawLine(i * gridSize * zoomLevel + Xoffset, 0  + Yoffset, i * gridSize * zoomLevel + Xoffset, 600 * zoomLevel  + Yoffset);
+        }
+        for (int i = Walls.size() - 1; i >= 0 ; i--) {
+            Walls.get(i).draw(grphcs, zoomLevel, Xoffset, Yoffset);
         }
         for (int i = List.size() - 1; i >= 0 ; i--) {
             List.get(i).draw(grphcs, zoomLevel, Xoffset, Yoffset);

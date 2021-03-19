@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -24,7 +25,6 @@ public class EngineTest {
     
     public static void main(String[] args) {
         GeneralUserInterface = new GUI();
-        
         GeneralUserInterface.frame.addKeyListener(new MoveKeyListener());
     }
     

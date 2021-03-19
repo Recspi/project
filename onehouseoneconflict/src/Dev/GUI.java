@@ -21,9 +21,10 @@ import javax.swing.JPanel;
  * @author Prokkály László
  */
 public class GUI {
-    private JFrame frame;
+    public JFrame frame;
     public GameEngine GameArea;
     public GameEngine GameArea2;
+    public Map map;
     
     public GUI(){
         frame = new JFrame("TEST Frame");
@@ -45,6 +46,10 @@ public class GUI {
         GameArea.setPreferredSize(new Dimension(800, 600));
         GameArea2.setPreferredSize(new Dimension(800, 600));
         
+        map = new Map();
+        GameArea.addWalls(map.generateMap());
+        GameArea2.addWalls(map.generateMap());
+        
         JPanel container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
         container.add(GameArea);
@@ -60,8 +65,13 @@ public class GUI {
         GameArea.addRectangle(nev,x,y,width,height,image);
     }
     
-    public void addWall(int x, int y, int width, int height, Image image){
+    /*public void addWall(int x, int y, int width, int height, Image image){
         GameArea.addWall(x,y,width,height,image);//bal oldali ablakhoz ad hozza
         GameArea2.addWall(x,y,width,height,image);//jobb oldali ablakhoz ad hozza
-    }
+    }*/
+    
+    /*public void addWall(Wall wall) {
+        GameArea.addWall(wall); //bal oldali ablakhoz ad hozza
+        GameArea2.addWall(wall); //jobb oldali ablakhoz ad hozza
+    }*/
 }
