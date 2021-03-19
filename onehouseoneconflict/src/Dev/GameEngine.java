@@ -105,11 +105,11 @@ public class GameEngine extends JPanel {
     }
     
     public void Setup (){
-        OrangeImage = new ImageIcon("design/images/orange.png").getImage();
+        OrangeImage = new ImageIcon("src/design/images/orange.png").getImage();
         GreenImage = new ImageIcon("design/images/green.png").getImage();
         BlueImage = new ImageIcon("design/images/blue.png").getImage();
         PurpleImage = new ImageIcon("design/images/purple.png").getImage();
-        BlackCircle = new ImageIcon("design/images/circle.png").getImage();
+        BlackCircle = new ImageIcon(this.getClass().getResource("/design/images/circle.png")).getImage();
         List = new ArrayList<>();
         Walls = new ArrayList<>();
         Players = new ArrayList<>();

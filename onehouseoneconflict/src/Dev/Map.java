@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 public class Map {
     private ArrayList<Wall> walls;
     
+    
     public Map() {
         walls = new ArrayList<>();
     }
@@ -40,7 +41,7 @@ public class Map {
 
 	while(i < map.length()) {
 		if(map.charAt(i) == '1') { //x tengely iranyaba allo fal: -
-			walls.add(new Wall(x, y, 40, 40, new ImageIcon("design/images/black.png").getImage()));
+			walls.add(new Wall(x, y, 40, 40, new ImageIcon(this.getClass().getResource("/design/images/black.png")).getImage()));
                         x += 40;
 		}
                 if(map.charAt(i) == '0') { //sorvege karakter: x
