@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package enginetest;
+package dev;
 
+import static dev.Dev.GeneralUserInterface;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -43,6 +41,11 @@ public class GUI {
                 System.exit(0);
             }
         });
+        
+        frame.addKeyListener(new MoveKeyListener());
+        //GameArea.addKeyListener(new MoveKeyListener());
+       
+        
         GameArea.setPreferredSize(new Dimension(800, 600));
         GameArea2.setPreferredSize(new Dimension(800, 600));
         
@@ -59,10 +62,91 @@ public class GUI {
         frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
+        frame.setFocusable(true);
     }
     
     public void addObject(String nev, int x, int y, int width, int height, Image image){
         GameArea.addRectangle(nev,x,y,width,height,image);
+    }
+    
+    public class MoveKeyListener extends JFrame implements KeyListener{
+
+        
+      
+        public void keyTyped(KeyEvent e) {
+            
+        }
+
+    
+        public void keyPressed(KeyEvent e) {
+            //W - 87, A - 65 , S - 83 , D - 68 
+            //Move player with WASD
+            //W pressed
+            if(e.getKeyCode() == 87)
+            {   
+                GameArea.Players.get(0).moveForward();
+            }
+            //S pressed
+            if(e.getKeyCode() == 83)
+            {
+                GameArea.Players.get(0).moveBackward();
+            }
+            //A pressed
+            if(e.getKeyCode() == 65)
+            {
+                GameArea.Players.get(0).moveLeft();
+            }
+            //D pressed
+            if(e.getKeyCode() == 68)
+            {
+                GameArea.Players.get(0).moveRight();
+            }
+            
+            // Move Player with Arrows
+            //Up arrow
+            if(e.getKeyCode() == 38)
+            {
+                GameArea2.Players.get(1).moveForward();
+            }
+            //Down arrow
+            if(e.getKeyCode() == 40)
+            {
+                GameArea2.Players.get(1).moveBackward();
+            }
+            //Left Arrow
+            if(e.getKeyCode() == 37)
+            {
+                GameArea2.Players.get(1).moveLeft();
+            }
+            //Right Arrow
+            if(e.getKeyCode() == 39)
+            {
+                GameArea2.Players.get(1).moveRight();
+            }
+        }
+
+        public void keyReleased(KeyEvent e) {
+            if(e.getKeyCode() == 87 || e.getKeyCode() == 83)
+            {   
+                GameArea.Players.get(0).setZeroY();
+            }
+            //S pressed
+            if(e.getKeyCode() == 65 || e.getKeyCode() == 68)
+            {
+                GameArea.Players.get(0).setZeroX();
+            }
+            
+            if(e.getKeyCode() == 38 || e.getKeyCode() == 40)
+            {   
+                GameArea2.Players.get(1).setZeroY();
+            }
+            
+            if(e.getKeyCode() == 37 || e.getKeyCode() == 39)
+            {   
+                GameArea2.Players.get(1).setZeroX();
+            }
+            
+        }
     }
     
     /*public void addWall(int x, int y, int width, int height, Image image){
