@@ -1,8 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Just for test
  */
+package dev;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -65,6 +64,12 @@ public class Rectangle {
         else if (y > Destination.getY()){
             y -= speed;
         }
+    }
+    
+    public void jumpTo(Point dest){
+        this.x = dest.x;
+        this.y = dest.y;
+        this.Destination = dest;
     }
     
     public void draw(Graphics g, int zoomLevel, int Xoffset, int Yoffset) {//kiolvassa a valodi koordinatakat es visszaszamolja azoknak jelenelg hol kell elhelyezkedniuk a torzitott kepen.

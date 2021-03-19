@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package dev;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,7 +25,6 @@ public class EngineTest {
     
     public static void main(String[] args) {
         GeneralUserInterface = new GUI();
-        
         GeneralUserInterface.frame.addKeyListener(new MoveKeyListener());
     }
     
