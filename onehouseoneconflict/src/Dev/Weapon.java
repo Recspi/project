@@ -1,4 +1,4 @@
-package enginetest;
+package dev;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +17,13 @@ public class Weapon {
     protected int fullCapacity;     // per magazine
     protected double fireRate;      // RPS (rounds per second)
     protected double reloadTime;    // per second
-    protected double damage;        // adjusted to player's health
+    protected int damage;        // adjusted to player's health
     
     protected int remainingAmmos;
     protected int remainingMags;
     
     
-    public Weapon(int magazineCapacity, int fullCapacity, double fireRate, double reloadTime, double damage) {
+    public Weapon(int magazineCapacity, int fullCapacity, double fireRate, double reloadTime, int damage) {
         this.magazineCapacity = magazineCapacity;
         this.fullCapacity = fullCapacity;
         this.fireRate = fireRate;
@@ -37,7 +37,7 @@ public class Weapon {
     
     public void shoot(Player target) {
         // collision detection missing for now
-        if(remainingAmmos > 0) { remainingAmmos -= 1; target.changeHP(-damage); }
+        if(remainingAmmos > 0) { remainingAmmos -= 1; target.loseHp(damage); }
         //else reload();
     }
     
@@ -87,7 +87,7 @@ public class Weapon {
         this.reloadTime = reloadTime;
     }
 
-    public void setDamage(double damage) {
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 

@@ -2,6 +2,8 @@ package dev;
 /**
  *
  * @author Németh Csaba
+ * @version 1.0
+ * @since 2021-03-02
  */
 
 

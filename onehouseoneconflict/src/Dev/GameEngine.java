@@ -69,7 +69,7 @@ public class GameEngine extends JPanel {
                     zoomLevel--;
                 }
             }
-        });*/
+        });
         this.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "pressed left");//CAMERA MOVE LEFT
         this.getActionMap().put("pressed left", new AbstractAction() {
             @Override
@@ -97,7 +97,8 @@ public class GameEngine extends JPanel {
             public void actionPerformed(ActionEvent ae) {
                 Yoffset -= cameraMoveSpeed * zoomLevel;
             }
-        });
+        });*/
+        
         newFrameTimer = new Timer(1000 / FPS, new NewFrameListener());
         newFrameTimer.start();
         Setup();
@@ -112,8 +113,8 @@ public class GameEngine extends JPanel {
         List = new ArrayList<>();
         Walls = new ArrayList<>();
         Players = new ArrayList<>();
-        Players.add(new Player("Player1", 0, 0, gridSize, gridSize, BlackCircle));//player1
-        Players.add(new Player("Player2", 0, 0, gridSize, gridSize, BlackCircle));//player2
+        Players.add(new Player("Player1", gridSize, gridSize, gridSize, gridSize, BlackCircle));//player1
+        Players.add(new Player("Player2", gridSize, gridSize, gridSize, gridSize, BlackCircle));//player2
     }
     
     public void addRectangle(String nev, int x, int y, int width, int height, Image image){
@@ -149,7 +150,7 @@ public class GameEngine extends JPanel {
             Players.get(i).draw(grphcs, zoomLevel, Xoffset, Yoffset);
         }
         
-        grphcs.drawString("Money: " + Integer.toString(300), 10, 20);
+        grphcs.drawString("Health: " + Integer.toString(Players.get(PlayerNumber-1).getHp()), 10, 20);
         grphcs.drawString("Capacity: " + Integer.toString(0) + "/" + Integer.toString(20), 100, 20);
     }
     
