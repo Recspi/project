@@ -1,4 +1,4 @@
-
+package enginetest;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Player{
     //Játékos tulajdonságok
-    private int HP; //HealthPoint
+    private double HP; //HealthPoint
     private int SP; //ShieldPoint
     private int Speed;
     
@@ -82,8 +82,22 @@ public class Player{
     }
     
     
+    public void changeHP(double amount) {
+        HP += amount;
+    }
     
     
+    /* getters */
+    
+    public double getHP() {
+        return HP;
+    }
+    
+    /* setters */
+
+    public void setHP(double HP) {
+        this.HP = HP;
+    }
     
     
 }
