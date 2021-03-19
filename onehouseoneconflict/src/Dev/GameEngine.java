@@ -25,22 +25,25 @@ import javax.swing.Timer;
  */
 public class GameEngine extends JPanel {
     
-    public ArrayList<Rectangle> List;
+    public static ArrayList<Rectangle> List;
     public ArrayList<Wall> Walls;
     private Image OrangeImage;
     private Image GreenImage;
     private Image BlueImage;
+    private Image PurpleImage;
     private Timer newFrameTimer;
     private final int FPS = 60;
     private int gridSize = 40;//segedhalo racsmerete
-    private int zoomLevel = 1;//zoomlevel szamítson az eltolasnal? nem.
+    private int zoomLevel = 2;//zoomlevel szamítson az eltolasnal? nem.
     private int cameraMoveSpeed = 3;//kamera mozgasi sebessege
     private int Xoffset = 0;//kamera X iranyu kimozdulasa
     private int Yoffset = 0;//kamera Y iranyu kimozdulasa
     private int motionSpeed = 2; //pixel jump/tick
+    private int PlayerNumber;
     
-    public GameEngine() {
+    public GameEngine(int PlayerNumber) {
         super();
+        this.PlayerNumber = PlayerNumber;
         this.addMouseListener(new MouseAdapter() {
         @Override 
         public void mousePressed(MouseEvent e) {
@@ -51,7 +54,7 @@ public class GameEngine extends JPanel {
                     System.out.println(List.get(i).getName() + " clicked");
                 }
             }
-            List.get(0).addPoint(e.getX(), e.getY(), gridSize, zoomLevel, Xoffset, Yoffset);
+            List.get(PlayerNumber - 1).addPoint(e.getX(), e.getY(), gridSize, zoomLevel, Xoffset, Yoffset);
         }
     });
         this.getInputMap().put(KeyStroke.getKeyStroke('+'), "pressed plus");//ZOOM IN
@@ -107,9 +110,11 @@ public class GameEngine extends JPanel {
         OrangeImage = new ImageIcon("design/images/orange.png").getImage();
         GreenImage = new ImageIcon("design/images/green.png").getImage();
         BlueImage = new ImageIcon("design/images/blue.png").getImage();
+        PurpleImage = new ImageIcon("design/images/purple.png").getImage();
         List = new ArrayList<>();
         Walls = new ArrayList<>();
-        List.add(new Rectangle("Orange", 40, 40, gridSize, gridSize, OrangeImage));
+        List.add(new Rectangle("Orange", 0, 0, gridSize, gridSize, OrangeImage));//player1
+        List.add(new Rectangle("Purple", 0, 0, gridSize, gridSize, PurpleImage));//player2
     }
     
     public void addRectangle(String nev, int x, int y, int width, int height, Image image){
@@ -154,9 +159,36 @@ public class GameEngine extends JPanel {
         public void actionPerformed(ActionEvent ae) {
             try
             {
+                //collisiondetection NYI
+                /*for (int i = 0; i < Walls.size(); i++) {
+                    if (List.get(0).collide_left(Walls.get(i))){
+                        if(List.get(0).getVelx() > 0){
+                            List.get(0).setVelx(0);
+                        }
+                    }
+                    if (List.get(0).collide_right(Walls.get(i))){
+                        if(List.get(0).getVelx() < 0){
+                            List.get(0).setVelx(0);
+                        }
+                    }
+                    if (List.get(0).collide_down(Walls.get(i))){
+                        if(List.get(0).getVely() > 0){
+                            List.get(0).setVely(0);
+                        }
+                    }
+                    if (List.get(0).collide_up(Walls.get(i))){
+                        if(List.get(0).getVely() < 0){
+                            List.get(0).setVely(0);
+                        }
+                    }
+                }*/
+                //mozgas
                 for (int i = 0; i < List.size(); i++) {
                     List.get(i).move(motionSpeed);
                 }
+                //cameracorrection                                                        |      zoomlál elcsuszik.    |    paros szamu racs van ezzel kozepre helyzem
+                Xoffset = 400 / zoomLevel - List.get(PlayerNumber - 1).getX() * zoomLevel + gridSize * (zoomLevel + 1) + gridSize / 2;
+                Yoffset = 300 / zoomLevel - List.get(PlayerNumber - 1).getY() * zoomLevel + gridSize * (zoomLevel + 1) - gridSize / 2;
                 repaint();
                 }
             catch(NullPointerException e)//ezt meg meg kellene oldani.

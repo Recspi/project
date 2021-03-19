@@ -29,8 +29,8 @@ public class GUI {
     public GUI(){
         frame = new JFrame("TEST Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GameArea = new GameEngine();
-        GameArea2 = new GameEngine();
+        GameArea = new GameEngine(1);
+        GameArea2 = new GameEngine(2);
         JMenuBar menuBar = new JMenuBar();
         frame.setJMenuBar(menuBar);
         JMenu gameMenu = new JMenu("Game");
