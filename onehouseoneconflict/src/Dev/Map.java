@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package enginetest;
+package dev;
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -44,14 +39,14 @@ public class Map {
 	int y = 0;
 
 	while(i < map.length()) {
-		if(map.charAt(i) == '1') { // wall: 1
+		if(map.charAt(i) == '1') { //x tengely iranyaba allo fal: -
 			walls.add(new Wall(x, y, 40, 40, new ImageIcon("design/images/black.png").getImage()));
                         x += 40;
 		}
-                if(map.charAt(i) == '0') { // empty space: 0
+                if(map.charAt(i) == '0') { //sorvege karakter: x
 			x += 40;
 		}
-		if(map.charAt(i) == 'x') { // end of line character: x
+		if(map.charAt(i) == 'x') { //sorvege karakter: x
 			x = 0;
 			y += 40;
 		}

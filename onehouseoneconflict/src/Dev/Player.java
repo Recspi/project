@@ -1,4 +1,4 @@
-package enginetest;
+package dev;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Player{
     //Játékos tulajdonságok
-    private double HP; //HealthPoint
+    private int HP; //HealthPoint
     private int SP; //ShieldPoint
     private int Speed;
     
@@ -43,6 +43,19 @@ public class Player{
     public ArrayList<Point> Waypoints;
     public Point Destination;
     
+    private int moveX = 0;
+    private int moveY = 0;
+    
+    public int getX()
+    {
+        return x;
+    }
+    
+    public int getY()
+    {
+        return y;
+    }
+    
     public Player(String name, int x, int y, int width, int height, Image image)
     {
         this.HP = GlobalVars.PLAYER_START_HEALTH;
@@ -57,47 +70,51 @@ public class Player{
         Destination = new Point(x,y);
     }
     
-    public void draw(Graphics g) {
-        g.drawImage(image, x, y, width, height, null);
+   
+    public void draw(Graphics g, int zoomLevel, int Xoffset, int Yoffset) {//kiolvassa a valodi koordinatakat es visszaszamolja azoknak jelenelg hol kell elhelyezkedniuk a torzitott kepen.
+        g.drawImage(image, x * zoomLevel + Xoffset, y * zoomLevel + Yoffset, width * zoomLevel, height * zoomLevel, null);
     }
     
     public void moveForward()
     {
-        this.y -= this.Speed;
+        moveY = -1;
     }
     
     public void moveBackward()
     {
-        this.y += this.Speed;
+        moveY = 1;
     }
     
     public void moveRight()
     {
-        this.x += this.Speed;
+        moveX = 1;
     }
     
     public void moveLeft()
     {
-        this.x -= this.Speed;
+        moveX = -1;
+    }
+  
+    public void setZeroY()
+    {
+        moveY = 0;
+    }
+    
+    public void setZeroX()
+    {
+        moveX = 0;
     }
     
     
-    public void changeHP(double amount) {
-        HP += amount;
+    public void move(int speed)
+    {
+        x += moveX * speed;
+        y += moveY * speed;
     }
     
     
-    /* getters */
     
-    public double getHP() {
-        return HP;
-    }
     
-    /* setters */
-
-    public void setHP(double HP) {
-        this.HP = HP;
-    }
     
     
 }
