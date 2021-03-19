@@ -1,0 +1,22 @@
+<<<<<<< Updated upstream
+/netbiens/nbproject/private/
+/netbiens/build/
+/netbiensrelease/nbproject/private/
+/netbiensrelease/build/
+
+netbiens/build.xml
+
+netbiens/manifest.mf
+
+netbiens/nbproject/build-impl.xml
+
+netbiens/nbproject/genfiles.properties
+
+netbiens/nbproject/
+
+netbiensrelease/
+
+onehouseoneconflict/src/.vscode/launch.json
+=======
+/onehouseoneconflict/src/Dev/nbproject/private/
+>>>>>>> Stashed changes
