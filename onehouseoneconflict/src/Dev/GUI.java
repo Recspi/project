@@ -1,6 +1,5 @@
 package dev;
 
-import static dev.Dev.GeneralUserInterface;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -79,6 +78,19 @@ public class GUI {
 
     
         public void keyPressed(KeyEvent e) {
+            
+            // H - 72
+            if(e.getKeyCode() == 72)
+            {
+                GameArea.Players.get(0).loseHp(10);
+            }
+
+            // J - 74
+            if(e.getKeyCode() == 74)
+            {
+                GameArea2.Players.get(1).loseHp(15);
+            }
+
             //W - 87, A - 65 , S - 83 , D - 68 
             //Move player with WASD
             //W pressed

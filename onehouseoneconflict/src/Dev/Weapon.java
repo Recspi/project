@@ -8,7 +8,7 @@ package dev;
  * @since 1.0
  */
 public class Weapon {
-<<<<<<< HEAD
+
     /** An int representing the magazine capacity in bullets per magazine.
      * 
      */
@@ -28,15 +28,8 @@ public class Weapon {
     /** A double representing the weapon's damage per bullet.
      * 
      */
-    protected double damage;
+    protected int damage;
     
-=======
-    protected int magazineCapacity; // per bullet
-    protected int fullCapacity;     // per magazine
-    protected double fireRate;      // RPS (rounds per second)
-    protected double reloadTime;    // per second
-    protected int damage;        // adjusted to player's health
->>>>>>> dev
     
     /** An int representing the remaining ammunitions in the magazine of a weapon.
      * 
@@ -47,7 +40,7 @@ public class Weapon {
      */
     protected int remainingMags;
     
-<<<<<<< HEAD
+
     /** Constructor for a weapon.
      *
      * @param magazineCapacity
@@ -56,11 +49,10 @@ public class Weapon {
      * @param reloadTime
      * @param damage
      */
-    public Weapon(int magazineCapacity, int fullCapacity, double fireRate, double reloadTime, double damage) {
-=======
+
     
     public Weapon(int magazineCapacity, int fullCapacity, double fireRate, double reloadTime, int damage) {
->>>>>>> dev
+
         this.magazineCapacity = magazineCapacity;
         this.fullCapacity = fullCapacity;
         this.fireRate = fireRate;
@@ -169,15 +161,12 @@ public class Weapon {
         this.reloadTime = reloadTime;
     }
 
-<<<<<<< HEAD
+
     /** Set the weapon's damage.
      *
      * @param damage
      */
-    public void setDamage(double damage) {
-=======
     public void setDamage(int damage) {
->>>>>>> dev
         this.damage = damage;
     }
 

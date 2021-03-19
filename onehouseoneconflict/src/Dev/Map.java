@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package enginetest;
-=======
 package dev;
->>>>>>> dev
 
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
